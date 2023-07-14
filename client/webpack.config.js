@@ -18,8 +18,43 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
-    ],
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        title: 'Plugin',
+        favicon: './favicon.ico',
+      }),
+      new HtmlWebpackPlugin({
+        template: './index.html',
+        title: 'Webpack Plugin',
+        favicon: './favicon.ico',
+      }),
+      new WebpackPwaManifest({
+          name: "Joaquin's Pro Editor",
+          short_name: 'Pro Editor',
+          description: 'Best app ever',
+          background_color: '#7eb4e2',
+          theme_color: '#7eb4e2',
+          start_url: './',
+          publicPath: './',
+          icons: [
+            {
+              src: path.resolve('src/images/logo.png'),
+              sizes: [96, 128, 192, 256, 384, 512],
+              destination: path.join('assets', 'icons'),
+            },
+            {
+              src: path.resolve('src/images/logo.png'),
+              size: '1024x1024',
+              destination: path.join('assets', 'icons'),
+              purpose: 'maskable'
+            }
+          ],
+        }), 
+        new InjectManifest({
+          swSrc: './src-sw.js',
+          swDest: 'service-worker.js',
+        }), 
+      ],
 
     module: {
       rules: [
