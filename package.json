@@ -1,0 +1,28 @@
+{
+  "name": "cautious-meme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "concurrently \"cd server && npm run server\"  \"cd client && npm run build\"",
+    "start": "npm run build && cd server && node server.js",
+    "server": "cd server node server.js --ignore client",
+    "build": "cd client && npm run build",
+    "install": "concurrently \"cd client && npm install\" \"cd server && npm install\" ",
+    "client": "cd client && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbarberisv/text-editor-pwa-jbv.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jbarberisv/text-editor-pwa-jbv/issues"
+  },
+  "homepage": "https://github.com/jbarberisv/text-editor-pwa-jbv#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
