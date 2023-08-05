@@ -10,16 +10,18 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 butInstall.addEventListener('click', async () => {
-  if (deferredPrompt !== null) {
-    deferredPrompt?.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      butInstall.setAttribute('disabled', true);
-      butInstall.textContent = 'Installed!';
-      deferredPrompt = null;
-  }
-  }
-})
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+  
+      const choiceResult = await deferredPrompt.userChoice;
+      if (choiceResult.outcome === 'accepted') {
+        butInstall.setAttribute('disabled', true);
+        butInstall.textContent = 'Installed!';
+        deferredPrompt = null;
+      }
+    }
+  });
+  
 
 
 
